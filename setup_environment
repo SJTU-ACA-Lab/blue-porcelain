@@ -1,0 +1,30 @@
+export ROOT="$(cd "$(dirname "$BASH_SOURCE")" && pwd)"
+
+if [ -z $CUDA_INSTALL_PATH ]; then
+  echo "ERROR ** nvcc (from CUDA Toolkit) was not found in PATH but required to build blue-porcelain."
+  echo "         Try adding $CUDA_INSTALL_PATH/bin/ to your PATH environment variable."
+  echo "         Please also be sure to read the README file if you have not done so."
+  echo ""
+  return
+fi
+
+NVCC_PATH=$(which nvcc)
+if [ $? = 1 ]; then
+  echo ""
+  echo "ERROR ** nvcc (from CUDA Toolkit) was not found in PATH but required to build blue-porcelain."
+  echo "         Try adding $CUDA_INSTALL_PATH/bin/ to your PATH environment variable."
+  echo "         Please also be sure to read the README file if you have not done so."
+  echo ""
+  return
+fi
+
+CC_VERSION=$(gcc --version | head -1 | awk '{for(i=1;i<=NF;i++){ if(match($i,/^[0-9]\.[0-9]\.[0-9]$/))  {print $i; exit 0}}}')
+
+export CUDA_VERSION_STRING=$($CUDA_INSTALL_PATH/bin/nvcc --version | awk '/release/ {print $5;}' | sed 's/,//')
+export CUDA_VERSION_NUMBER=$(echo $CUDA_VERSION_STRING | sed 's/\./ /' | awk '{printf("%02u%02u", 10*int($1), 10*$2);}')
+if [ $CUDA_VERSION_NUMBER -gt 11000 -o $CUDA_VERSION_NUMBER -lt 10020 ]; then
+  echo "ERROR ** current version not tested with CUDA version $CUDA_VERSION_STRING (please see README)"
+  return
+fi
+
+export LD_LIBRARY_PATH=$ROOT/runtime:$ROOT/driver/csim:/usr/local/cuda/lib64:/usr/local/cuda/lib:$LD_LIBRARY_PATH

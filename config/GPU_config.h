@@ -1,0 +1,87 @@
+#pragma once
+
+#ifndef GPU_CONFIG
+#define GPU_CONFIG
+
+#ifndef NUM_CORES
+#define NUM_CORES 1
+#endif
+
+#ifndef WARP_SIZE
+#define WARP_SIZE 32
+#endif
+
+#ifndef WARP_NUM
+#define WARP_NUM 48
+#endif
+
+#ifndef CONSTANT_MEM_START
+#define CONSTANT_MEM_START 0x0
+#endif
+
+#ifndef KERNEL_PARAMS_START
+#define KERNEL_PARAMS_START 0x160
+#endif
+
+#ifndef CONSTANT_BANK_SIZE
+#define CONSTANT_BANK_SIZE 0x10000
+#endif
+
+#ifndef STARTUP_ADDR
+#define STARTUP_ADDR 0x80000
+#endif
+
+#ifndef GLOBAL_HEAP_START
+#define GLOBAL_HEAP_START 0xC0000000
+#endif
+
+#ifndef MAX_STREAMING_MULTIPROCESSORS
+#define MAX_STREAMING_MULTIPROCESSORS 80
+#endif
+
+#ifndef LOCAL_MEM_SIZE_MAX
+#define LOCAL_MEM_SIZE_MAX 1 << 14
+#endif
+
+#ifndef TOTAL_LOCAL_MEM
+#define TOTAL_LOCAL_MEM \
+  MAX_STREAMING_MULTIPROCESSORS *(MAX_THREAD_PER_SM) * (LOCAL_MEM_SIZE_MAX)
+#endif
+
+#ifndef SHARED_GENERIC_START
+#define SHARED_GENERIC_START \
+  (GLOBAL_HEAP_START - (GPGPU_SHMEM_SIZE * MAX_STREAMING_MULTIPROCESSORS))
+#endif
+
+#ifndef LOCAL_GENERIC_START
+#define LOCAL_GENERIC_START (SHARED_GENERIC_START - TOTAL_LOCAL_MEM)
+#endif
+
+// Maximum amount of shared memory per SM
+#ifndef GPGPU_SHMEM_SIZE
+#define GPGPU_SHMEM_SIZE 65536
+#endif
+
+// Maximum size of 32-bit registers per SM
+#ifndef GPGPU_SM_REGISTERS
+#define GPGPU_SM_REGISTERS 65536
+#endif
+
+#ifndef MAX_CTA_PER_SM
+#define MAX_CTA_PER_SM 32
+#endif
+
+#ifndef MAX_THREAD_PER_SM
+#define MAX_THREAD_PER_SM WARP_SIZE *WARP_NUM
+#endif
+
+#define MAX_OUTPUT_VALUES 8
+#define MAX_INPUT_VALUES 24
+
+#define RAM_PAGE_SIZE 4096
+
+#ifndef REGFILE_BANK
+#define REGFILE_BANK 4
+#endif
+
+#endif

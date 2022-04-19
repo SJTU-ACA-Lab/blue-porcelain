@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -ue
+
+OUTPUT=1 ./MATRIX_INVERSION
+numdiff -a 1e-1 c.txt c.gpu
+numdiff -a 1e-1 inv.txt inv.gpu

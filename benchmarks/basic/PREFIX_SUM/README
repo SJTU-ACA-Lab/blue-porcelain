@@ -1,0 +1,3 @@
+Notes:
+This benchmark was originally implemented in https://github.com/mark-poscablo/gpu-prefix-sum
+It is modified to easily test our simulator.
