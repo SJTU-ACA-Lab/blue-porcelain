@@ -1,3 +1,4 @@
+# Blue-porcelain GPGPU
 ## Directory structure
 
 - `driver`: Host drivers repository.
@@ -13,7 +14,7 @@
 - gcc 7.5.0
 - g++ 7.5.0
 - GNU Make 4.1
-- [CUDA 10.2 Runtime](https://developer.nvidia.com/cuda-downloads)
+- CUDA 10.2 Runtime
 ### Install development tools 
 
 ```shell
@@ -54,7 +55,7 @@ You can run our benchmark automatically under the `ci` directory. Make sure you 
 
     $ source setup_environment
     $ cd ./ci
-    $ sh run.sh [-cores=4] [-a|-b|-bb]
+    $ sh run.sh -a
 
 `-core`: set the sm core number(default is 1)
 
@@ -77,6 +78,5 @@ docker run -w /root -it acalab/gpgpu:0.1 /bin/bash
 For more information about our Open GPGPU Platform, go here: https://gpgpuarch.org
 
 ## License
-NOTE:
 
 License information can be found in the LICENSE file. Third party license information can be found in the THIRDPARTY file.

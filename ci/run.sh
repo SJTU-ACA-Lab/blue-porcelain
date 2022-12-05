@@ -3,7 +3,7 @@
 show_usage()
 {
     echo "BlackBox Test Driver v1.0"
-    echo "Usage: [ [[-cores=#n] [-a|-b|-bb] [-help]]"
+    echo "Usage: [[-cores=#n] [-a|-b|-bb] [-help]]"
 }
 
 SCRIPT_DIR=$(dirname "$0")
