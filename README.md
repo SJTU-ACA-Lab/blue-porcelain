@@ -1,4 +1,5 @@
 # Blue-porcelain GPGPU
+Blue-porcelain is a GPGPU design proposed by the Advanced Architecture Laboratory of Shanghai Jiao Tong University.
 ## Directory structure
 
 - `driver`: Host drivers repository.
@@ -79,4 +80,6 @@ For more information about our Open GPGPU Platform, go here: https://gpgpuarch.o
 
 ## License
 
-License information can be found in the LICENSE file. Third party license information can be found in the THIRDPARTY file.
+License information can be found in the LICENSE file. 
+
+Third party license information can be found in the THIRDPARTY file.
