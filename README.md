@@ -67,12 +67,12 @@ You can run our benchmark automatically under the `ci` directory. Make sure you 
 `-bb`  : only build the benchmark program
 
 ## Docker  
-Setup the development environment with Docker.
+Build a docker image and run the regressions in the docker.
 
 ```shell
 cd blue-porcelain
-docker build -t acalab/gpgpu:0.1 .
-docker run -w /root -it acalab/gpgpu:0.1 /bin/bash
+docker build -t acalab/gpgpu .
+docker run -w /root/blue-porcelain/ci -it --rm acalab/gpgpu bash run.sh -a
 ```
 
 ## OpenGPU GPGPU Platform
